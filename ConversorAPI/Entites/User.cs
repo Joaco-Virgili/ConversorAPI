@@ -19,7 +19,7 @@ namespace ConversorAPI.Entites
         public RoleEnum Role { get; set; } = RoleEnum.User;
         public List<CurrencyConversion> CurrencyConversion { get; set; }
         [ForeignKey("SubscriptionId")]
-        public int SubscriptionId { get; set; }
+        public int SubscriptionId { get; set; } = 1;
         public Subscription Subscription { get; set; }
     }
 }
