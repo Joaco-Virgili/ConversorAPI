@@ -74,7 +74,11 @@ namespace ConversorAPI.Servicies.Implementation
 
         public void Delete(int id)
         {
-            _context.Users.Remove(_context.Users.Single(u => u.Id == id));
+            User? user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user != null)
+            {
+                user.State = Models.Enum.StateEnum.Inactive;
+            }
             _context.SaveChanges();
         }
 

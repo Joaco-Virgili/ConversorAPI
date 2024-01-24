@@ -44,7 +44,6 @@ namespace ConversorAPI.Controllers
         }
 
         [HttpPost]
-
         public IActionResult CreateCurrency(CreateOrUpdateCurrency dto)
         {
             var role = HttpContext.User.Claims.FirstOrDefault(x => x.Type.Contains("role"))!.Value;
@@ -93,7 +92,7 @@ namespace ConversorAPI.Controllers
             if (role == "Admin")
             {
                 _currencyServices.Delete(id);
-                return Ok();
+                return Ok(id);
             }
             return Unauthorized();
         }

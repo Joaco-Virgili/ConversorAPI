@@ -92,7 +92,6 @@ namespace ConversorAPI.Data
                 ToCurrencyId = usd.Id,
                 FromCurrencyId = peso.Id,
                 Amount = 10,
-                Date = DateTime.Now,
                 UserId = 2
             };
 

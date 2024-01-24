@@ -1,4 +1,6 @@
-﻿namespace ConversorAPI.Entites
+﻿using ConversorAPI.Models.Enum;
+
+namespace ConversorAPI.Entites
 {
     public class Subscription
     {
@@ -7,5 +9,6 @@
         public int Price { get; set; }
         public int AmountOfConversion { get; set; }
         public List<User> Users { get; set; }
+        public StateEnum State { get; set; } = 0;
     }
 }

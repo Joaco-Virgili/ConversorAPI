@@ -62,8 +62,7 @@ namespace ConversorAPI.Servicies.Implementation
         }
 
         public void Delete(int id)
-        {
-            
+        {      
             Currency? currency = _context.Currencys.FirstOrDefault(u => u.Id == id);
             if (currency != null)
             {

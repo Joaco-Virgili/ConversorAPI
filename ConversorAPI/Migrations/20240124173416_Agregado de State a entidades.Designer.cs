@@ -4,6 +4,7 @@ using ConversorAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConversorAPI.Migrations
 {
     [DbContext(typeof(ConversorDbContext))]
-    partial class ConversorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240124173416_Agregado de State a entidades")]
+    partial class AgregadodeStateaentidades
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,7 +116,7 @@ namespace ConversorAPI.Migrations
                         {
                             Id = 1,
                             Amount = 10.0,
-                            Date = new DateTime(2024, 1, 24, 0, 0, 0, 0, DateTimeKind.Local),
+                            Date = new DateTime(2024, 1, 24, 14, 34, 14, 950, DateTimeKind.Local).AddTicks(7979),
                             FromCurrencyId = 3,
                             ToCurrencyId = 1,
                             UserId = 2

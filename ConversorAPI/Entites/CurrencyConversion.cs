@@ -9,7 +9,7 @@ namespace ConversorAPI.Entites
         public Currency ToCurrency { get; set; } = null!;
         public int FromCurrencyId { get; set; }
         public Currency FromCurrency { get; set; } = null!;
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now.Date;
         public double Amount { get; set; }
         [ForeignKey("UserId")]
         public int UserId { get; set; }

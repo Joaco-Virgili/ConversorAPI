@@ -61,6 +61,8 @@ namespace ConversorAPI
 );
             builder.Services.AddScoped<IUserServices, UserServices>();
             builder.Services.AddScoped<ICurrencyServices, CurrencyServices>();
+            builder.Services.AddScoped<ISubscriptionServices, SubscriptionServices>();
+            builder.Services.AddScoped<ICurrencyConverisonServices, CurrencyConverisonServices>();
 
             var app = builder.Build();
 

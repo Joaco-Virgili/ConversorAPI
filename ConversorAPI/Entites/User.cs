@@ -17,6 +17,7 @@ namespace ConversorAPI.Entites
         [Required]
         public string LastName { get; set; }
         public RoleEnum Role { get; set; } = RoleEnum.User;
+        public StateEnum State { get; set; } = 0;
         public List<CurrencyConversion> CurrencyConversion { get; set; }
         [ForeignKey("SubscriptionId")]
         public int SubscriptionId { get; set; } = 1;
