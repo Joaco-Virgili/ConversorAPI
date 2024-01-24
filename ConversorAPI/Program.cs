@@ -60,6 +60,7 @@ namespace ConversorAPI
     }
 );
             builder.Services.AddScoped<IUserServices, UserServices>();
+            builder.Services.AddScoped<ICurrencyServices, CurrencyServices>();
 
             var app = builder.Build();
 

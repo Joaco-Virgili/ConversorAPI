@@ -108,6 +108,7 @@ namespace ConversorAPI.Controllers
             if(role == "Admin")
             {
                 _userServices.Delete(id);
+                return Ok();
             }
             return Unauthorized();
         }
