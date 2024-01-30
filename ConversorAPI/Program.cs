@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using ConversorAPI.Servicies.Implementation;
 using ConversorAPI.Servicies.Interfaces;
+using ConversorAPI.Helpers;
 
 namespace ConversorAPI
 {
@@ -63,6 +64,7 @@ namespace ConversorAPI
             builder.Services.AddScoped<ICurrencyServices, CurrencyServices>();
             builder.Services.AddScoped<ISubscriptionServices, SubscriptionServices>();
             builder.Services.AddScoped<ICurrencyConverisonServices, CurrencyConverisonServices>();
+            builder.Services.AddScoped<CurrencyConversionHelper>();
 
             var app = builder.Build();
 

@@ -86,12 +86,13 @@ namespace ConversorAPI.Data
                 Value = 0.0002
             };
 
-            CurrencyConversion usdAPeso = new CurrencyConversion()
+            CurrencyConversion usdAEuro = new CurrencyConversion()
             {
                 Id = 1,
                 ToCurrencyId = usd.Id,
-                FromCurrencyId = peso.Id,
-                Amount = 10,
+                FromCurrencyId = euro.Id,
+                Amount = 100,
+                Result = 109.00,
                 UserId = 2
             };
 
@@ -105,7 +106,7 @@ namespace ConversorAPI.Data
                 .HasData(usd, euro, peso);
 
             modelBuilder.Entity<CurrencyConversion>()
-                .HasData(usdAPeso);
+                .HasData(usdAEuro);
             
             modelBuilder.Entity<User>()
                 .HasOne<Subscription>(s => s.Subscription)

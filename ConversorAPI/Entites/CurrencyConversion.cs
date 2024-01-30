@@ -11,6 +11,7 @@ namespace ConversorAPI.Entites
         public Currency FromCurrency { get; set; } = null!;
         public DateTime Date { get; set; } = DateTime.Now.Date;
         public double Amount { get; set; }
+        public double Result { get; set; }
         [ForeignKey("UserId")]
         public int UserId { get; set; }
         public User User { get; set; }
