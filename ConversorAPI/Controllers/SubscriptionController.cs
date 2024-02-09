@@ -31,7 +31,7 @@ namespace ConversorAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCurrency(CreateOrUpdateSubs dto)
+        public IActionResult CreateSubs(CreateOrUpdateSubs dto)
         {
             var role = HttpContext.User.Claims.FirstOrDefault(x => x.Type.Contains("role"))!.Value;
             if (role == "Admin")
@@ -50,7 +50,7 @@ namespace ConversorAPI.Controllers
         }
 
         [HttpPut("Id")]
-        public IActionResult UpdateCurrency(CreateOrUpdateSubs dto, int id)
+        public IActionResult UpdateSubs(CreateOrUpdateSubs dto, int id)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace ConversorAPI.Controllers
         }
 
         [HttpDelete("Id")]
-        public IActionResult DeleteCurrency(int id)
+        public IActionResult DeleteSubs(int id)
         {
             var role = HttpContext.User.Claims.FirstOrDefault(x => x.Type.Contains("role"))!.Value;
             if (role == "Admin")

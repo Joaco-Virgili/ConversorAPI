@@ -23,24 +23,14 @@ namespace ConversorAPI.Controllers
 
         public IActionResult GetAllCurrency() 
         {
-            var role = HttpContext.User.Claims.FirstOrDefault(x => x.Type.Contains("role"))!.Value;
-            if (role == "Admin")
-            {
-                return Ok(_currencyServices.GetAll());
-            }
-            return Unauthorized();
+            return Ok(_currencyServices.GetAll());
         }
 
         [HttpGet("Id")]
 
         public IActionResult GetOneById(int id)
         {
-            var role = HttpContext.User.Claims.FirstOrDefault(x => x.Type.Contains("role"))!.Value;
-            if (role == "Admin")
-            {
                 return Ok(_currencyServices.GetById(id));
-            }
-            return Unauthorized();
         }
 
         [HttpPost]
