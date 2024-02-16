@@ -14,8 +14,12 @@ namespace ConversorAPI.Controllers
     public class CurrencyConverisonController : ControllerBase
     {
         private readonly ICurrencyConverisonServices _currencyConverisonServices;
-        public CurrencyConverisonController(ICurrencyConverisonServices currencyConverisonServices)
+        private readonly IUserServices _userServices;
+        private readonly ISubscriptionServices _subscriptionServices;
+        public CurrencyConverisonController(ICurrencyConverisonServices currencyConverisonServices, IUserServices userServices, ISubscriptionServices subscriptionServices)
         {
+            _subscriptionServices = subscriptionServices;
+            _userServices = userServices;
             _currencyConverisonServices = currencyConverisonServices;
         }
 
@@ -39,8 +43,16 @@ namespace ConversorAPI.Controllers
             try
             {
                 int userId = Int32.Parse(HttpContext.User.Claims.FirstOrDefault(x => x.Type.Contains("nameidentifier"))!.Value);
-                var conversion = _currencyConverisonServices.Create(dto, userId);
-                return Created("Created", conversion.Result);
+
+                int countConverision = _currencyConverisonServices.GetConversionsCount(userId);
+                int amountOfconversionByUser = _userServices.GetAmountOfConversion(userId);
+                
+                if(countConverision <= amountOfconversionByUser || amountOfconversionByUser == -1)
+                {
+                    var conversion = _currencyConverisonServices.Create(dto, userId);
+                    return Created("Created", conversion.Result);
+                }
+                return Unauthorized();
             }
             catch (Exception ex)
             {
@@ -52,13 +64,8 @@ namespace ConversorAPI.Controllers
         public IActionResult GetConversionsCount()
         {
             int userId = Int32.Parse(HttpContext.User.Claims.FirstOrDefault(x => x.Type.Contains("nameidentifier"))!.Value);
-            var role = HttpContext.User.Claims.FirstOrDefault(x => x.Type.Contains("role"))!.Value;
-            if (role == "Admin")
-            {
-                var conversion = _currencyConverisonServices.GetConversionsCount(userId);
-                return Ok(conversion);
-            }
-            return Unauthorized();
+            var conversion = _currencyConverisonServices.GetConversionsCount(userId);
+            return Ok(conversion);
         }
     }
 }

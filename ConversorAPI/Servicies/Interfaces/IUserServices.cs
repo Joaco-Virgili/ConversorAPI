@@ -11,6 +11,7 @@ namespace ConversorAPI.Servicies.Interfaces
         public void Update(CreateOrUpdateUser dto, int Id);
         public void ChangeSub (ChangeUserSubDto dto, int userId);
         public void Delete(int id);
+        public int GetAmountOfConversion(int id);
         public User? ValidateUser(AuthenticationRequestDto authRequestBody);
         public bool CheckIfUserExists(int userId);
     }

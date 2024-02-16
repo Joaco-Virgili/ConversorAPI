@@ -87,7 +87,7 @@ namespace ConversorAPI.Controllers
 
             try
             {
-                if (dto.SubsriptionId >= 1 && dto.SubsriptionId <= 3)
+                if (dto.subscriptionId >= 1 && dto.subscriptionId <= 3)
                 {
                     _userServices.ChangeSub(dto, userId);
                     return Ok(dto);

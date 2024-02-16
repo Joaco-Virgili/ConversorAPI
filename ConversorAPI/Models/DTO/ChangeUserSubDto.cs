@@ -2,6 +2,6 @@
 {
     public class ChangeUserSubDto
     {
-        public int SubsriptionId { get; set; }
+        public int subscriptionId { get; set; }
     }
 }

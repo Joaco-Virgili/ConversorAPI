@@ -42,6 +42,14 @@ namespace ConversorAPI.Servicies.Implementation
             return null;
         }
 
+        public int GetAmountOfConversion(int id)
+        {
+            var amountOfConversion = _context.Users.Where(u => u.Id == id).
+                Join(_context.Subscriptions, user => user.SubscriptionId,subscription => subscription.Id,(user, subscription) => subscription.AmountOfConversion)
+                .FirstOrDefault();
+            return amountOfConversion;
+        }
+
         public void Create(CreateOrUpdateUser dto)
         {
             User newUser = new User()
@@ -68,7 +76,7 @@ namespace ConversorAPI.Servicies.Implementation
         public void ChangeSub(ChangeUserSubDto dto, int userId)
         {
             User userSubToChange = _context.Users.First(u => u.Id == userId);
-            userSubToChange.SubscriptionId = dto.SubsriptionId;
+            userSubToChange.SubscriptionId = dto.subscriptionId;
             _context.SaveChanges();
         }
 

@@ -52,7 +52,7 @@ namespace ConversorAPI.Controllers
             return Unauthorized();
         }
 
-        [HttpPut("Id")]
+        [HttpPut("{Id}")]
         public IActionResult UpdateCurrency(CreateOrUpdateCurrency dto, int id)
         {
             try
@@ -75,7 +75,7 @@ namespace ConversorAPI.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{Id}")]
         public IActionResult DeleteCurrency(int id)
         {
             var role = HttpContext.User.Claims.FirstOrDefault(x => x.Type.Contains("role"))!.Value;

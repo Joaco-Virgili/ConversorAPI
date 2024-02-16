@@ -43,6 +43,7 @@ namespace ConversorAPI.Controllers
             claimsForToken.Add(new Claim("given_name", user.Email));
             claimsForToken.Add(new Claim("family_name", user.Name));
             claimsForToken.Add(new Claim("role", user.Role.ToString()));
+            claimsForToken.Add(new Claim("subId",user.SubscriptionId.ToString()));
 
             var jwtSecurityToken = new JwtSecurityToken(
               _config["Authentication:Issuer"],

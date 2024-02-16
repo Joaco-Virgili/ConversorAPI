@@ -24,7 +24,7 @@ namespace ConversorAPI.Controllers
             return Ok(_subscriptionServices.GetAll());
         }
 
-        [HttpGet("Id")]
+        [HttpGet("{id}")]
         public IActionResult GetSubById(int id)
         {
             return Ok(_subscriptionServices.GetById(id));

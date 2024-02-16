@@ -32,40 +32,32 @@ namespace ConversorAPI.Servicies.Implementation
 
         public CurrencyConversion Create(CreateNewConversionDto dto, int loggedUserId)
         {
-            var userSubscription = _context.Users.Where(u => u.Id == loggedUserId).Select(u => u.Subscription).FirstOrDefault();
-            var CountOfConversion = _context.CurrencyConversions.Where(u => u.UserId == loggedUserId).Count();
+            var toCurrency = _context.Currencys.FirstOrDefault((currency) => currency.Id == dto.ToCurrencyId)!;
+            var fromCurrency = _context.Currencys.FirstOrDefault((currency) => currency.Id == dto.FromCurrencyId)!;
+            double result;
 
-
-            if (userSubscription != null && userSubscription.AmountOfConversion <= CountOfConversion)
+            if (toCurrency.Value < fromCurrency.Value)
             {
-                var toCurrency = _context.Currencys.FirstOrDefault((currency) => currency.Id == dto.ToCurrencyId)!;
-                var fromCurrency = _context.Currencys.FirstOrDefault((currency) => currency.Id == dto.FromCurrencyId)!;
-                double result;
-
-                if (toCurrency.Value < fromCurrency.Value)
-                {
-                    result = _currencyConversionHelper.MultiplicateResult(dto.Amount, fromCurrency.Value);
-                }
-                else
-                {
-                    result = _currencyConversionHelper.DivideResult(dto.Amount, fromCurrency.Value);
-                }
-
-                result = Math.Round(result, 2);
-
-                CurrencyConversion newConversion = new CurrencyConversion()
-                {
-                    ToCurrencyId = toCurrency.Id,
-                    Amount = dto.Amount,
-                    FromCurrencyId = fromCurrency.Id,
-                    Result = result,
-                    UserId = loggedUserId,
-                };
-                _context.CurrencyConversions.Add(newConversion);
-                _context.SaveChanges();
-                return newConversion;
+                result = _currencyConversionHelper.MultiplicateResult(dto.Amount, fromCurrency.Value);
             }
-            return null;
+            else
+            {
+                result = _currencyConversionHelper.DivideResult(dto.Amount, fromCurrency.Value);
+            }
+
+            result = Math.Round(result, 2);
+
+            CurrencyConversion newConversion = new CurrencyConversion()
+            {
+                ToCurrencyId = toCurrency.Id,
+                Amount = dto.Amount,
+                FromCurrencyId = fromCurrency.Id,
+                Result = result,
+                UserId = loggedUserId,
+            };
+            _context.CurrencyConversions.Add(newConversion);
+            _context.SaveChanges();
+            return newConversion;
         }
 
 
