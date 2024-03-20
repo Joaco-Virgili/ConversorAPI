@@ -51,7 +51,7 @@ namespace ConversorAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return StatusCode(500, "Error al conectarse con el servidor");
             }
         }
 
@@ -69,7 +69,7 @@ namespace ConversorAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return StatusCode(500, "Error al conectarse con el servidor");
             }
             return NoContent();
         }
@@ -96,7 +96,7 @@ namespace ConversorAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return StatusCode(500, "Error al conectarse con el servidor");
             }
         }
 

@@ -15,12 +15,14 @@ namespace ConversorAPI.Servicies.Implementation
 
         public List<CurrencyDto> GetAll() 
         {
-            return _context.Currencys.Select(c => new CurrencyDto
+            return _context.Currencys.Where(c => c.State == 0)
+                .Select(c => new CurrencyDto
             {
                 Id = c.Id,
                 Name = c.Name,
                 Symbol = c.Symbol,
-                Value = c.Value
+                Value = c.Value,
+                State = c.State
             }).ToList();
         }
 

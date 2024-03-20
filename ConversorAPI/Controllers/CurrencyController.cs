@@ -46,7 +46,7 @@ namespace ConversorAPI.Controllers
                     }
                     catch(Exception ex)
                     {
-                        return BadRequest(ex.Message);
+                        return StatusCode(500, "Error al conectarse con el servidor");
                     } 
             }
             return Unauthorized();
@@ -71,7 +71,7 @@ namespace ConversorAPI.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, "Error al conectarse con el servidor");
             }
         }
 

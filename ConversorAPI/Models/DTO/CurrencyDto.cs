@@ -1,4 +1,6 @@
-﻿namespace ConversorAPI.Models.DTO
+﻿using ConversorAPI.Models.Enum;
+
+namespace ConversorAPI.Models.DTO
 {
     public class CurrencyDto
     {
@@ -6,5 +8,6 @@
         public string Name { get; set; }
         public string Symbol { get; set; }
         public double Value { get; set; }
+        public StateEnum State { get; set; }
     }
 }
